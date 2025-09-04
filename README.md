@@ -34,8 +34,9 @@ Combined performance and controller input:
 $$ p_{\text{raw},t} = 0.6\,\text{points}_t + 0.4\,\text{lives}_t, $$
 
 $$
-p_{\mathrm{avg},t}=\mathrm{rollmean}_W\!\left(p_{\mathrm{raw}}\right).
+p_{\text{avg},t}=\frac{1}{W}\sum_{k=0}^{W-1} p_{\text{raw},\,t-k}.
 $$
+
 
 
 $$ e_t = p^{*} - p_{\text{avg},t}. $$
