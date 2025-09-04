@@ -32,9 +32,9 @@ $$
 Combined performance and controller input:
 
 $$
-p_{\text{raw},t}=0.6\,\text{points}_t+0.4\,\text{lives}_t,\quad
-p_{\text{avg},t}=\text{rolling-mean}(p_{\text{raw}}; W),\quad
-e_t=p^\*-p_{\text{avg},t}
+p_{\mathrm{raw},t}=0.6\,\mathrm{points}_t+0.4\,\mathrm{lives}_t,\qquad
+p_{\mathrm{avg},t}=\operatorname{rollmean}_{W}\!\big(p_{\mathrm{raw}}\big),\qquad
+e_t=p^\*-p_{\mathrm{avg},t}.
 $$
 
 Difficulty update (sign chosen so **low $p$** → **reduce difficulty**):
@@ -46,7 +46,12 @@ $$
 Skill update (learn in mid-zone, fatigue when $d_t>\text{skill}_t$):
 
 $$
-\text{skill}_{t+1}=\text{clip}\Big(\text{skill}_t+\alpha\,p_{\text{avg},t}\big(1-p_{\text{avg},t}\big)\Big(1-\tfrac{\text{skill}_t}{s_{\max}}\Big)-\gamma\,\max(0, d_t-\text{skill}_t),\ [0,s_{\max}]\Big)
+s_{t+1}=\mathrm{clip}\!\left(
+s_t+\alpha\,p_{\mathrm{avg},t}\!\left(1-p_{\mathrm{avg},t}\right)
+\left(1-\frac{s_t}{s_{\max}}\right)
+-\gamma\,\max\!\left(0,\,d_t-s_t\right),\;
+[\,0,\,s_{\max}\,]
+\right).
 $$
 
 
