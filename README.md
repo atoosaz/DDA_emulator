@@ -31,13 +31,7 @@ $$
 
 Combined performance and controller input:
 
-$$
-\begin{gathered}
-p_{\text{raw},t} = 0.6\,\text{points}_t + 0.4\,\text{lives}_t, \\
-p_{\text{avg},t} = \operatorname{rollmean}_W\!\big(p_{\text{raw}}\big), \\
-e_t = p^{*} - p_{\text{avg},t}.
-\end{gathered}
-$$
+$$ p_{\text{raw},t} = 0.6\,\text{points}_t + 0.4\,\text{lives}_t, p_{\text{avg},t} = \operatorname{rollmean}_W\!\big(p_{\text{raw}}\big), e_t = p^{*} - p_{\text{avg},t}. $$
 
 
 Difficulty update (sign chosen so **low $p$** → **reduce difficulty**):
