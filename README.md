@@ -4,7 +4,6 @@ This project is a lightweight, web-based emulator of a rehabilitation “Balloon
 
 A lightweight, web-ready emulator of a rehabilitation **Balloon** game that demonstrates **Dynamic Difficulty Adjustment (DDA)** using only classic feedback control (P / D / PID). The app treats **difficulty as a single scalar** tuned by a controller to hold a **target performance** (“flow”) level while simulating a player’s **skill** and **observed performance** (points, lives).
 
----
 
 ##  Overview
 
@@ -13,7 +12,6 @@ A lightweight, web-ready emulator of a rehabilitation **Balloon** game that demo
 * **Observations:** **points** and **lives** $\in[0,1]$ with optional noise; combined into $p_{\text{raw}}$ and a rolling average $p_{\text{avg}}$.
 * **Controller:** P / D / PID acts on error $e=p^\*-p_{\text{avg}}$; PID includes a simple anti-windup.
 
----
 
 ## Core Idea (Math)
 
@@ -51,7 +49,6 @@ $$
 \text{skill}_{t+1}=\text{clip}\Big(\text{skill}_t+\alpha\,p_{\text{avg},t}\big(1-p_{\text{avg},t}\big)\Big(1-\tfrac{\text{skill}_t}{s_{\max}}\Big)-\gamma\,\max(0, d_t-\text{skill}_t),\ [0,s_{\max}]\Big)
 $$
 
----
 
 ## What You See
 
@@ -59,7 +56,6 @@ $$
 2. **Performance & Difficulty:** $p_{\text{avg}}$, $p_{\text{raw}}$, dashed **points**/**lives**, and **normalized difficulty**
 3. **Derived difficulties:** continuous **drop speed** (px/s) & **spawn rate** (spawns/interval ×100) **plus integerized overlays** (engine-friendly)
 
----
 
 ## Key Features
 
@@ -69,7 +65,6 @@ $$
 * **Safety/stability:** difficulty clamps; PID anti-windup
 * **Clean, minimal UI** in Streamlit
 
----
 
 ## Controls & Parameters (Sidebar)
 
@@ -84,7 +79,6 @@ $$
 * **Internals (fixed in code):**
   Horizon `T`, rolling window `W`, difficulty bounds `[d_lo, d_hi]`
 
----
 
 ##  Run Locally
 
@@ -99,7 +93,6 @@ pip install streamlit==1.38.0 numpy matplotlib
 streamlit run app.py    # or your filename
 ```
 
----
 
 ## Deploy on the Web
 
@@ -139,23 +132,11 @@ EXPOSE 8501
 CMD ["streamlit","run","app.py","--server.port=8501","--server.address=0.0.0.0"]
 ```
 
----
+
 
 ## 🛠Planned Extensions (Optional)
 
 * **Player profiles** (Noob/Casual/Skilled/Pro): sets `s0, s_max, α, γ, β`, noise, and perceptual lag
 * **Population mode**: run many sampled players → mean ± band plots for controller robustness
 * **Auto-tuning**: grid/Bayesian search on gains using metrics (time-in-flow, overshoot, settling time)
-
----
-
-## License
-
-Choose your license (e.g., MIT) and add it here.
-
----
-
-## Acknowledgments
-
-Built for rapid experimentation and teaching in **rehab serious games** and **DDA control**.
 
